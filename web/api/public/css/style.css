@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    background: #11151d;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(145, 199, 80);
+}
+
+#app {
+    position: absolute;
+
+    left: 20%;
+    height: 100%;
+    width: 60%;
+
+    padding: 0;
+    margin: 0; 
+
+    color: white;
+    font-family: "Montserrat", sans-serif;
+
+    overflow-x: hidden;
+}
+
+.title {
+    padding: 20px;
+}
+
+.title h1 {
+    font-size: 3.4rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.title p {
+    margin-top: 0px;
+    color: #707070;
+    font-size: 2rem;
+}
+
+.title h1 span {
+    color: rgb(145, 199, 80);
+}
