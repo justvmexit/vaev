@@ -1,0 +1,19 @@
+{
+  "name": "vaev",
+  "version": "1.0.0",
+  "description": "API for Væv Client's.",
+  "main": "app.js",
+  "scripts": {
+    "test": "python tests.py",
+    "run": "node app.js"
+  },
+  "author": "justvmexit",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "liquidjs": "^9.25.1",
+    "mysql": "^2.18.1",
+    "uuid": "^8.3.2"
+  }
+}
