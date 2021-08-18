@@ -1,12 +1,20 @@
 # Væv Platform 1.0
-An advanced malware framework is written in Javascript, C++, and more.
+An advanced malware framework for Windows.
 
-# Malware
-We provide multiple types of malware, but it's essentially an advanced botnet.
-Here are some of them.
+# Description
+Væv is an open-source malware framework for pentesting. We currently only provide 3 methods but these are quite useful incase you want quick, secure and fast access to a computer.
 * Key-logger
 * Reverse-shell
-* Invisible loading of executable modules.
+* Shutdown computer
+
+# Compiling
+You need to recompile the node_modules and simply use x64-Release for the [client](https://github.com/justvmexit/vaev/tree/main/client)
+
+# Using the malware
+To use the malware you use netcat.
+`nc -lvp <port>`
+The port for reverse-shell's is 5420 and key-loggers are 5520
+Then you just go on the website and issue an action for either.
 
 # License
 Code released under MIT LICENSE.
