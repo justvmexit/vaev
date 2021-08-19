@@ -16,5 +16,8 @@ To use the malware you use netcat.
 The port for reverse-shell's is 5420 and key-loggers are 5520
 Then you just go on the website and issue an action for either.
 
+# Credits
+@Softnio - Thank you for the theme!
+
 # License
 Code released under MIT LICENSE.
