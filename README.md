@@ -7,6 +7,11 @@ Væv is an open-source malware framework for pentesting. We currently only provi
 * Reverse-shell
 * Shutdown computer
 
+# Showcase
+![dashboard](https://github.com/justvmexit/vaev/blob/main/showcase/dashboard.PNG)
+![dashboard](https://github.com/justvmexit/vaev/blob/main/showcase/machine.PNG)
+![dashboard](https://github.com/justvmexit/vaev/blob/main/showcase/action.PNG)
+
 # Compiling
 You need to recompile the node_modules and simply use x64-Release for the [client](https://github.com/justvmexit/vaev/tree/main/client)
 
