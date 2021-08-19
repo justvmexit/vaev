@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Moritz Zimmermann"> 
+    
+        <meta property="og:type" content="website">
+        <meta property="type" content="website">
+    
+        <meta name="og:site_name" content="" />
+        <meta name="site_name" content="" />
+    
+        <meta property="og:title" content="" />
+        <meta property="title" content="" />
+    
+        <meta name="og:image" content="/images/favicon.ico" />
+        <meta name="image" content="/images/favicon.ico" />
+    
+        <meta name="description" content="An advanced malware framework." />
+        <meta name="og:description" content="An advanced malware framework." />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <title>væv</title>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="stylesheet" href="/css/dashlite.css?ver=2.6.0">
+        <link id="skin-default" rel="stylesheet" href="/css/theme.css?ver=2.6.0">
+    </head>
+    
+    <body class="nk-body bg-white npc-default pg-error">
+        <div class="nk-app-root">
+            <div class="nk-main ">
+                <div class="nk-wrap ">
+                    <div class="nk-header nk-header-fixed is-light">
+                        <div class="container-lg wide-xl">
+                            <div class="nk-header-wrap">
+                                <div class="nk-header-brand">
+                                   <h3>væv</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-content ">
+                        <div class="container wide-xl">
+                            <div class="nk-content-inner">
+                                <div class="nk-aside" data-content="sideNav" data-toggle-overlay="true" data-toggle-screen="lg" data-toggle-body="true">
+                                    <div class="nk-sidebar-menu" data-simplebar>
+                                        <ul class="nk-menu">
+                                            <li class="nk-menu-heading">
+                                                <h6 class="overline-title text-primary-alt">VÆV MANAGEMENT</h6>
+                                            </li>
+                                            <li class="nk-menu-item active">
+                                                <a href="#" class="nk-menu-link">
+                                                    <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
+                                                    <span class="nk-menu-text">Dashboard</span>
+                                                </a>
+                                                <a href="/dashboard/machines" class="nk-menu-link">
+                                                    <span class="nk-menu-icon"><em class="icon ni ni-covid"></em></span>
+                                                    <span class="nk-menu-text">Machines</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="nk-aside-close">
+                                        <a href="#" class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
+                                    </div>
+                                </div>
+                                <div class="nk-content-body">
+                                    <div class="nk-content-wrap">
+                                        <div class="nk-block-head nk-block-head-sm">
+                                            <div class="nk-block-between">
+                                                <div class="nk-block-head-content">
+                                                    <h3 class="nk-block-title page-title">Overview</h3>
+                                                    <div class="nk-block-des text-soft">
+                                                        <p>Welcome back {{ user.username }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="nk-block">
+                                            <div class="row g-gs">
+                                                <div class="col-sm-6">
+                                                    <div class="card card-bordered">
+                                                        <div class="card-inner">
+                                                            <div class="card-title-group align-start mb-2">
+                                                                <div class="card-title">
+                                                                    <h6 class="title">Suspicious Activity</h6>
+                                                                </div>
+                                                                <div class="card-tools">
+                                                                    <em class="card-hint icon ni ni-help-fill" data-toggle="tooltip" data-placement="left" title="Total suspicious activity"></em>
+                                                                </div>
+                                                            </div>
+                                                            <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
+                                                                <div class="nk-sale-data">
+                                                                    <span class="amount">{{ suspicious_activity }}</span>                              
+                                                                </div>
+                                                                <div class="nk-sales-ck">
+                                                                    <canvas class="sales-bar-chart" id="activeSubscription"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="card card-bordered">
+                                                        <div class="card-inner">
+                                                            <div class="card-title-group align-start mb-2">
+                                                                <div class="card-title">
+                                                                    <h6 class="title">Active Zombies</h6>
+                                                                </div>
+                                                                <div class="card-tools">
+                                                                    <em class="card-hint icon ni ni-help-fill" data-toggle="tooltip" data-placement="left" title="All active zombies/machines"></em>
+                                                                </div>
+                                                            </div>
+                                                            <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
+                                                                <div class="nk-sale-data">
+                                                                    <span class="amount">{{ machines }}</span>
+                                                                </div>
+                                                                <div class="nk-sales-ck">
+                                                                    <canvas class="sales-bar-chart" id="totalSubscription"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="card card-bordered card-full">
+                                                        <div class="card-inner">
+                                                            <div class="card-title-group">
+                                                                <div class="card-title">
+                                                                    <h6 class="title"><span class="mr-2">Recent Machines</span> <a href="/dashboard/machines" class="link d-none d-sm-inline">See them all</a></h6>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-inner p-0 border-top">
+                                                            <div class="nk-tb-list nk-tb-orders">
+                                                                <div class="nk-tb-item nk-tb-head">
+                                                                    <div class="nk-tb-col"><span>Id</span></div>
+                                                                    <div class="nk-tb-col tb-col-sm"><span>IPv4</span></div>
+                                                                    <div class="nk-tb-col tb-col-md"><span>Architecture</span></div>
+                                                                    <div class="nk-tb-col tb-col-lg"><span>Last ping</span></div>
+                                                                    <div class="nk-tb-col"><span>Infected on</span></div>
+                                                                </div>
+                                                                {% for machine in recent_machines %}
+                                                                <div class="nk-tb-item">
+                                                                    <div class="nk-tb-col">
+                                                                        <span class="tb-sub"><a href="/dashboard/machines/{{ machine.id }}">{{ machine.id }}</a></span>
+                                                                    </div>
+                                                                    <div class="nk-tb-col tb-col-sm">
+                                                                        <span class="tb-lead">{{ machine.ip }}</span>
+                                                                    </div>
+                                                                    <div class="nk-tb-col tb-col-md">
+                                                                        <span class="tb-sub">{{ machine.architecture }}</span>
+                                                                    </div>
+                                                                    <div class="nk-tb-col tb-col-lg">
+                                                                        <span class="tb-sub"> {{ machine.last_ping }}</span>
+                                                                    </div>
+                                                                    <div class="nk-tb-col tb-col-lg">
+                                                                        <span class="tb-sub"> {{ machine.infected_on }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="nk-footer">
+                                        <div class="container wide-xl">
+                                            <div class="nk-footer-wrap g-2">
+                                                <div class="nk-footer-copyright"> An open-source advanced malware framework </a>
+                                                </div>
+                                                <div class="nk-footer-links">
+                                                    <ul class="nav nav-sm">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="https://github.com/justvmexit/vaev/pulls">Contribute</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="https://github.com/justvmexit/vaev/">GitHub</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="https://github.com/justvmexit/vaev/issues">Help</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script src="/js/bundle.js?ver=2.6.0"></script>
+        <script src="/js/scripts.js?ver=2.6.0"></script>
+    </body>
+    </html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Moritz Zimmermann"> 
+    
+        <meta property="og:type" content="website">
+        <meta property="type" content="website">
+    
+        <meta name="og:site_name" content="" />
+        <meta name="site_name" content="" />
+    
+        <meta property="og:title" content="" />
+        <meta property="title" content="" />
+    
+        <meta name="og:image" content="/images/favicon.ico" />
+        <meta name="image" content="/images/favicon.ico" />
+    
+        <meta name="description" content="An advanced malware framework." />
+        <meta name="og:description" content="An advanced malware framework." />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <title>væv</title>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="stylesheet" href="/css/dashlite.css?ver=2.6.0">
+        <link id="skin-default" rel="stylesheet" href="/css/theme.css?ver=2.6.0">
+    </head>
+    
+    <body class="nk-body bg-white npc-default pg-error">
+        <div class="nk-app-root">
+            <div class="nk-main ">
+                <div class="nk-wrap ">
+                    <div class="nk-header nk-header-fixed is-light">
+                        <div class="container-lg wide-xl">
+                            <div class="nk-header-wrap">
+                                <div class="nk-header-brand">
+                                   <h3>væv</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-content ">
+                        <div class="container wide-xl">
+                            <div class="nk-content-inner">
+                                <div class="nk-aside" data-content="sideNav" data-toggle-overlay="true" data-toggle-screen="lg" data-toggle-body="true">
+                                    <div class="nk-sidebar-menu" data-simplebar>
+                                        <ul class="nk-menu">
+                                            <li class="nk-menu-heading">
+                                                <h6 class="overline-title text-primary-alt">VÆV MANAGEMENT</h6>
+                                            </li>
+                                            <li class="nk-menu-item active">
+                                                <a href="/dashboard/" class="nk-menu-link">
+                                                    <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
+                                                    <span class="nk-menu-text">Dashboard</span>
+                                                </a>
+                                                <a href="#" class="nk-menu-link">
+                                                    <span class="nk-menu-icon"><em class="icon ni ni-covid"></em></span>
+                                                    <span class="nk-menu-text">Machines</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="nk-aside-close">
+                                        <a href="#" class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
+                                    </div>
+                                </div>
+                                <div class="nk-content-body">
+                                    <div class="nk-content-wrap">
+                                        <div class="nk-block-head">
+                                            <div class="nk-block-between g-3">
+                                                <div class="nk-block-head-content">
+                                                    <h3 class="nk-block-title page-title">Machines / <strong class="text-primary small">{{ machine.ip }}</strong></h3>
+                                                    <div class="nk-block-des text-soft">
+                                                        <ul class="list-inline">
+                                                            <li>Last Ping: <span class="text-base">{{ machine.last_ping }}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-block-head-content">
+                                                    <a data-toggle="modal" data-target="#addaction" class="btn btn-success d-none d-sm-inline-flex"><em class="icon ni ni-cloud-fill"></em><span>New action</span></a>
+                                                    <a data-toggle="modal" data-target="#addaction" class="btn btn-icon btn-success d-inline-flex d-sm-none"><em class="icon ni ni-cloud-fill"></em></a>
+                                                    <a href="/dashboard/machines" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em class="icon ni ni-arrow-left"></em><span>Back</span></a>
+                                                    <a href="/dashboard/machines" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em class="icon ni ni-arrow-left"></em></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="nk-block">
+                                            <div class="card card-bordered">
+                                                <div class="card-inner">
+                                                    <div class="nk-block">
+                                                        <div class="nk-block-head">
+                                                            <h5 class="title">Machine Information</h5>
+                                                            <p>Essential management for a rooted machine.</p>
+                                                        </div>
+                                                        <div class="profile-ud-list">
+                                                            <div class="profile-ud-item">
+                                                                <div class="profile-ud wider">
+                                                                    <span class="profile-ud-label">IPv4</span>
+                                                                    <span class="profile-ud-value">{{ machine.ip }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="profile-ud-item">
+                                                                <div class="profile-ud wider">
+                                                                    <span class="profile-ud-label">Operating System</span>
+                                                                    <span class="profile-ud-value">{{ machine.architecture }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="profile-ud-item">
+                                                                <div class="profile-ud wider">
+                                                                    <span class="profile-ud-label">Infected on</span>
+                                                                    <span class="profile-ud-value">{{ machine.infected_on }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="profile-ud-item">
+                                                                <div class="profile-ud wider">
+                                                                    <span class="profile-ud-label">Owner</span>
+                                                                    <span class="profile-ud-value">{{ machine.owner }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-divider divider md"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="nk-footer">
+                                        <div class="container wide-xl">
+                                            <div class="nk-footer-wrap g-2">
+                                                <div class="nk-footer-copyright"> An open-source advanced malware framework </a>
+                                                </div>
+                                                <div class="nk-footer-links">
+                                                    <ul class="nav nav-sm">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="https://github.com/justvmexit/vaev/pulls">Contribute</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="https://github.com/justvmexit/vaev/">GitHub</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="https://github.com/justvmexit/vaev/issues">Help</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" id="addaction" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Action</h5>
+                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                            <em class="icon ni ni-cross"></em>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/dashboard/machines/{{ machine.id }}/action" class="form-validate is-alter" method="POST" novalidate="novalidate" onload="UpdateForm()">
+                            <div class="form-group">
+                                <label class="form-label" for="phone-no">Action</label>
+                                <div class="form-control-wrap">
+                                    <select class="form-control" name="type" id="type" onchange="UpdateForm()">
+                                        <option value="1">Reverse Shell</option>
+                                        <option value="2">Key Logger</option>
+                                        <option value="3">Shutdown</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: none;" id="datafield">
+                                <label class="form-label" for="data">IPv4</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" id="data" name="data" required="" placeholder="IPv4 address of your attacker computer.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg btn-primary">Add action</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <span class="sub-text">Væv Platform 1.0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("load",function(){
+                UpdateForm();
+            },false);
+            
+
+            function UpdateForm()
+            {
+                const type = document.getElementById('type');
+                if(type.options[type.selectedIndex].value < 3)
+                {
+                    document.getElementById('datafield').style.display = 'block';
+                }
+                else
+                {
+                    document.getElementById('datafield').style.display = 'none';
+                }
+            }
+        </script>
+    
+        <script src="/js/bundle.js?ver=2.6.0"></script>
+        <script src="/js/scripts.js?ver=2.6.0"></script>
+    </body>
+    </html>
