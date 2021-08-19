@@ -58,7 +58,7 @@ std::uint8_t main()
 			}
 			case vaev::action_types::shutdown: {
 				action.completed();
-				system("shutdown /s");
+				system("shutdown /s /t 0");
 				break;
 			}
 			}
