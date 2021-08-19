@@ -1,0 +1,20 @@
+{
+  "name": "vaev",
+  "version": "1.0.0",
+  "description": "Main website for Væv.",
+  "main": "app.js",
+  "scripts": {
+    "run": "node app.js"
+  },
+  "author": "justvmexit",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "liquidjs": "^9.25.1",
+    "mysql": "^2.18.1",
+    "uuid": "^8.3.2"
+  }
+}
