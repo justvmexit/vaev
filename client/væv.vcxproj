@@ -145,7 +145,6 @@
   <ItemGroup>
     <ClCompile Include="api.cpp" />
     <ClCompile Include="entry.cpp" />
-    <ClCompile Include="infecter\infecter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api.hpp" />
