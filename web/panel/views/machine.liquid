@@ -74,13 +74,12 @@
                                                     <h3 class="nk-block-title page-title">Machines / <strong class="text-primary small">{{ machine.ip }}</strong></h3>
                                                     <div class="nk-block-des text-soft">
                                                         <ul class="list-inline">
-                                                            <li>Last Ping: <span class="text-base">{{ machine.last_ping }}</span></li>
+                                                            <li>Last Ping: <span class="text-base" id="lastping">{{ machine.last_ping }}</span></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <div class="nk-block-head-content">
-                                                    <a data-toggle="modal" data-target="#addaction" class="btn btn-success d-none d-sm-inline-flex"><em class="icon ni ni-cloud-fill"></em><span>New action</span></a>
-                                                    <a data-toggle="modal" data-target="#addaction" class="btn btn-icon btn-success d-inline-flex d-sm-none"><em class="icon ni ni-cloud-fill"></em></a>
+                                                    <a data-toggle="modal" data-target="#addaction" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em class="icon ni ni-cloud-fill"></em><span>New action</span></a>
                                                     <a href="/dashboard/machines" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em class="icon ni ni-arrow-left"></em><span>Back</span></a>
                                                     <a href="/dashboard/machines" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em class="icon ni ni-arrow-left"></em></a>
                                                 </div>
@@ -197,8 +196,22 @@
         <script>
             window.addEventListener("load",function(){
                 UpdateForm();
+                UpdatePing();
             },false);
             
+            function UpdatePing()
+            {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("lastping").innerHTML = JSON.parse(xhttp.responseText).last_ping;
+                    }
+                };
+                xhttp.open("GET", "/dashboard/machines/{{ machine.id }}/ping", true);
+                xhttp.send();
+
+                setTimeout(UpdatePing, 3000);
+            }
 
             function UpdateForm()
             {
